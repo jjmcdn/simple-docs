@@ -1,0 +1,69 @@
+#!/usr/bin/env pinpoint
+# This first block defines the defaults for the whole presentation.
+#
+# A detailed example is here:
+# http://git.gnome.org/browse/pinpoint/tree/introduction.pin
+#
+# The parser junk can be found here:
+# https://github.com/GNOME/pinpoint/blob/master/pinpoint.c#L451
+#
+# The main method for formatting text is via pango markup, documented here:
+# http://developer.gnome.org/pango/stable/PangoMarkupFormat.html
+#
+[font=Verdana 70px]
+[regular_page.png]
+[shading-opacity=0.0]
+[stage-color=white]
+[stretch]
+[text-color=#707070]
+[top-left]
+[transition=fade]
+
+----- [title_page.png] [left]
+<span foreground="black">Generic Awesome Presentation Title</span>
+
+<span font_desc="Verdana 50px" weight="heavy">Joe MacDonald <span weight="light">Linux Security Architect</span></span>
+<span font_desc="Verdana 30px" weight="light" style="italic">Senior Member of Technical Staff</span>
+
+----- # New slide
+<span weight="heavy">Slide Title</span>
+
+* bullet level one
+   * bullet level two
+* back to level one
+
+----- # slide 2
+
+Just a heap of text
+
+----- [no-markup] [font=Monospace 20px] [left] [shading-opacity=0.06]   # slide 3 will have some code
+
+static void
+parse_config (PinPointPoint *point,
+              const char    *config)
+{
+  GString    *str = g_string_new ("");
+  const char *p;
+
+  for (p = config; *p; p++)
+    {
+      if (*p != '[')
+        continue;
+
+      p++;
+      g_string_truncate (str, 0);
+      while (*p && *p != ']' && *p != '\n')
+        {
+          g_string_append_c (str, *p);
+          p++;
+        }
+
+      if (*p == ']')
+        parse_setting (point, str->str);
+    }
+  g_string_free (str, TRUE);
+}
+
+----- [wr_logo_transparent.png] [fit] [center]
+
+# vim:tw=0 wm=0:
