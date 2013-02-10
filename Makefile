@@ -3,7 +3,7 @@ ODT_OPTS = --generate-oowriter-toc \
 			  --create-links \
 			  --toc-entry-backlinks \
 			  --footnote-backlinks \
-			  --stylesheet=${HOME}/Ubuntu\ One/Documents/Work/wr-style.odt \
+			  --stylesheet=./.wr-style.odt \
 			  --section-numbering \
 			  --date \
 			  --time \
