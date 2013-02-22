@@ -13,7 +13,7 @@ ODT_OPTS = --generate-oowriter-toc \
 PDF_OPTS = --inline-footnotes \
 			  --smart-quotes=1 \
 			  --repeat-table-rows \
-			  --first-page-even
+			  --first-page-on-right
 
 HTML_OPTS = --toc-entry-backlinks \
 				--footnote-backlinks \
