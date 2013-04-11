@@ -8,12 +8,13 @@ ODT_OPTS = --generate-oowriter-toc \
 			  --date \
 			  --time \
 			  --table-border-thickness=0 \
-			  --title="Wind River Secure Remote Management"
+			  --title="Generic Design Document Template"
 
 PDF_OPTS = --inline-footnotes \
 			  --smart-quotes=1 \
 			  --repeat-table-rows \
-			  --first-page-on-right
+			  --first-page-on-right \
+			  --stylesheets="./rst2pdf.css"
 
 HTML_OPTS = --toc-entry-backlinks \
 				--footnote-backlinks \
@@ -28,11 +29,13 @@ HTML_OPTS = --toc-entry-backlinks \
 				--compact-lists \
 				--table-style=borderless
 
-%.odt: %.rst
-	rst2odt $(ODT_OPTS) $< $@
+IN_DOCS = $(wildcard *.rst)
 
-%.pdf: %.rst
+%.pdf: %.rst rst2pdf.css
 	rst2pdf $(PDF_OPTS) $< -o $@
+
+%.odt: %.rst .wr-style.odt
+	rst2odt $(ODT_OPTS) $< $@
 
 %.html: %.rst
 	rst2html $(HTML_OPTS) $< $@
@@ -42,7 +45,19 @@ HTML_OPTS = --toc-entry-backlinks \
 %.ppt: %.pin
 	pinpoint $< -o $*-presentation.pdf
 
-all: sample.odt sample.pdf sample.html sample.ppt
+all: odt pdf html ppt
+
+pdf: $(IN_DOCS:%.rst=%.pdf)
+
+
+odt: $(IN_DOCS:%.rst=%.odt)
+
+
+html: $(IN_DOCS:%.rst=%.html)
+
+
+ppt:  $(IN_DOCS:%.pin=%.ppt)
+
 
 clean:
 	rm -fr *.html *.odt *.pdf
