@@ -20,7 +20,7 @@
     # The first template is one of the 'pageTemplates'
     # (See next section)
 
-    firstTemplate: oneColumn
+    firstTemplate: coverPage
 
   # pageTemplates can be accessed with the .. raw:: pdf PageBreak command
 
@@ -81,7 +81,7 @@
     stdMonoBoldItalic: Courier-BoldOblique
     stdSerif: Times-Roman
 
-  linkColor: navy
+  linkColor: red
 
   styles:
     base:
@@ -241,8 +241,12 @@
       parent: bodytext
       commands: []
              [VALIGN, [ 0, 0 ], [ -1, -1 ], TOP ]
+             [TOPPADDING, [ 0, 0 ], [ -1, -1 ], 0 ]
+             [BOTTOMPADDING, [ 0, 0 ], [ -1, -1 ], 0 ]
              [RIGHTPADDING, [ 0, 0 ], [ 1, -1 ], 0 ]
       colWidths: ["20", null]
+      spaceBefore: 6
+      spaceAfter: 6
 
     bullet-list-item:
       parent: bodytext
