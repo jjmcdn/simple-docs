@@ -1,1 +1,3 @@
-site_name: My Docs
+site_name: Simple Docs Material+MkDocs Test
+theme:
+  name: material
